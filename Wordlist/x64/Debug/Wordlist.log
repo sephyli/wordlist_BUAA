@@ -1,2 +1,4 @@
-﻿  WordSet.cpp
+﻿  Wordlist.cpp
+g:\北航\计算机\软件工程\wordlist_buaa\wordlist\wordlist.cpp(37): warning C4477: “printf”: 格式字符串“%d”需要类型“int”的参数，但可变参数 1 拥有了类型“unsigned __int64”
+  g:\北航\计算机\软件工程\wordlist_buaa\wordlist\wordlist.cpp(37): note: 请考虑在格式字符串中使用“%zd”
   Wordlist.vcxproj -> G:\北航\计算机\软件工程\wordlist_BUAA\x64\Debug\Wordlist.exe

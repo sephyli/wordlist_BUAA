@@ -4,7 +4,7 @@
 #include <string>
 
 Word::Word(const char* s, int length) {
-	char s_tmp[100];
+	char s_tmp[100] = "\0";
 	for (int i = 0; i <= length; i++) {
 		if ('A' <= s[i] && s[i]<= 'Z') {
 			s_tmp[i] = s[i] + 'a' - 'A';
