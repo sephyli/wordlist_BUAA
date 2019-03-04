@@ -31,17 +31,5 @@ namespace WordlistUnitTest
 			Assert::AreEqual((int)ws.set['h'-'a'].size(), 4);
 		}
 
-		TEST_METHOD(TestMethod2)
-		{
-			// TODO: 在此输入测试代码
-			FILE* fpt;
-			int err = fopen_s(&fpt, "../test/testfile.txt", "r");
-			if (err != 0)
-				std::cout << "FILE PATH ERROR!" << endl;
-			Data d = Data(fpt);
-
-			cout << "end" << endl;
-		}
-
 	};
 }
