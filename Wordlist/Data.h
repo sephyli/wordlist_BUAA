@@ -6,6 +6,7 @@ class Data
 {
 public:
 	Data(FILE* fpt);
+	Data(char *words[], int len)
 	~Data();
 	WordSet ws;
 private:

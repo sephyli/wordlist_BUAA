@@ -5,21 +5,27 @@
 Data::Data(FILE* fpt)
 {
 	char c = 0;
-	char s[100];
+	char s[100] = "";
 	int index = 0;
-	fscanf_s(fpt, "%c", &c, 1);
+	c = fgetc(fpt);
 	while (c != EOF) {
 		if (inrange(c) != 0)
 			s[index++] = c;
-		else if(index != 0 ) {
+		else if(index != 0) {
+			s[index] = '\0';
 			Word w = Word(s, index);
 			this->ws.append(w);
 			index = 0;
 		}
-		fscanf_s(fpt, "%c", &c, 1);
+		c = fgetc(fpt);
 	}
 }
-
+Data::Data(char *words[], int len) {
+	for (int i = 0; i < len; i++) {
+		Word w = Word(words[i], strlen(words[i]));
+		this->ws.append(w);
+	}
+}
 
 Data::~Data()
 {

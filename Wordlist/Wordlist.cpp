@@ -1,7 +1,4 @@
-﻿// Wordlist.cpp : 此文件包含 "main" 函数。程序执行将在此处开始并结束。
-//
-
-#include "pch.h"
+﻿#include "pch.h"
 #include <iostream>
 #include "Word.h"
 #include "WordSet.h"
@@ -60,10 +57,6 @@ int main(int agrc, char* agrv[])
 
 	Mode mode = Mode();
 	mode.Set(rMode, hMode, tMode, wMaxMode, cMaxMode, h, t);
-
-
-
-
 	FILE* fpt;
 	int err = fopen_s(&fpt, filePath, "r");
 	if (err != 0)

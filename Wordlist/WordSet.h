@@ -8,6 +8,6 @@ public:
 	void append(Word w);
 	//Word getWord(char head);
 // private:
-	std::vector<Word> set[26];
+	std::vector<Word> set[26][26];
 };
 
