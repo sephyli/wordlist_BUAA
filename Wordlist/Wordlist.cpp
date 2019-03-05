@@ -4,6 +4,7 @@
 #include "WordSet.h"
 #include "Data.h"
 #include "Mode.h"
+#include "Searcher.h"
 
 using namespace std;
 
@@ -23,26 +24,33 @@ int main(int agrc, char* agrv[])
 			{
 			case 'w':
 				wMaxMode = true;
+				if (agrv[i][2] != '\0')
+					cout << "TOO MUCH LETTER FOR W" << endl;
 				break;
 			case 'c':
 				cMaxMode = true;
+				if (agrv[i][2] != '\0')
+					cout << "TOO MUCH LETTER FOR C" << endl;
 				break;
 			case 'r':
 				rMode = true;
+				if (agrv[i][2] != '\0')
+					cout << "TOO MUCH LETTER FOR R" << endl;
 				break;
 			case 'h':
-				hMode = true;
-				h = agrv[++i][0];
-				if (agrv[i][1] != '\0')
+				hMode = true;			
+				if (agrv[i][2] != '\0')
 					cout << "TOO MUCH LETTER FOR HEAD" << endl;
+				h = agrv[++i][0];
 				break;
 			case 't':
 				tMode = true;
-				t = agrv[++i][0];
-				if (agrv[i][1] != '\0')
+				if (agrv[i][2] != '\0')
 					cout << "TOO MUCH LETTER FOR TAIL" << endl;
+				t = agrv[++i][0];
 				break;
 			default:
+				cout << "PARAMETER CANNOT BE UNDERSTANDED" << endl;
 				break;
 			}
 		}
@@ -57,12 +65,26 @@ int main(int agrc, char* agrv[])
 
 	Mode mode = Mode();
 	mode.Set(rMode, hMode, tMode, wMaxMode, cMaxMode, h, t);
-	FILE* fpt;
-	int err = fopen_s(&fpt, filePath, "r");
+	FILE *fin, *fout;
+	int err = fopen_s(&fin, filePath, "r");
+	fopen_s(&fout, "../solution.txt", "w");
 	if (err != 0)
 		cout << "FILE PATH ERROR!" << endl;
-	Data d = Data(fpt);
+	Data data = Data(fin);
 
+	Searcher searcher = Searcher(data, mode);
+	searcher.exe();
+	searcher.output(true, fout);
+
+
+	//vector<int> w;
+	//vector<int> v;
+
+	//w.push_back(1);
+	//w.push_back(2);
+	//w.clear(); 
+	//w.push_back(3);
+	//w.push_back(4);
 
 	return 0;
 }

@@ -1,6 +1,9 @@
 #include "pch.h"
 #include "Data.h"
 
+Data::Data()
+{
+}
 
 Data::Data(FILE* fpt)
 {
@@ -8,7 +11,7 @@ Data::Data(FILE* fpt)
 	char s[100] = "";
 	int index = 0;
 	c = fgetc(fpt);
-	while (c != EOF) {
+	while (c != EOF || index != 0) {
 		if (inrange(c) != 0)
 			s[index++] = c;
 		else if(index != 0) {
@@ -16,6 +19,8 @@ Data::Data(FILE* fpt)
 			Word w = Word(s, index);
 			this->ws.append(w);
 			index = 0;
+			if (c == EOF)
+				break;
 		}
 		c = fgetc(fpt);
 	}
@@ -27,8 +32,13 @@ Data::Data(char *words[], int len) {
 	}
 }
 
-Data::~Data()
-{
+void Data::reset() {
+	for (int i = 0; i < 26; i++) {
+		for (int j = 0; j < 26; j++) {
+			for (auto iter = this->ws.set[i][j].begin(); iter != this->ws.set[i][j].end(); iter++)
+				iter->use = false;
+		}
+	}
 }
 
 int Data::inrange(char c) {
@@ -38,6 +48,11 @@ int Data::inrange(char c) {
 		return 2;
 	else
 		return 0;
+}
+
+
+Data::~Data()
+{
 }
 
 
