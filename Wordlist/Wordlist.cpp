@@ -22,27 +22,32 @@ int main(int agrc, char* agrv[])
 		if (agrv[i][0] == '-') {
 			switch (agrv[i][1])
 			{
+			case 'W':
 			case 'w':
 				wMaxMode = true;
 				if (agrv[i][2] != '\0')
 					cout << "TOO MUCH LETTER FOR W" << endl;
 				break;
+			case 'C':
 			case 'c':
 				cMaxMode = true;
 				if (agrv[i][2] != '\0')
 					cout << "TOO MUCH LETTER FOR C" << endl;
 				break;
+			case 'R':
 			case 'r':
 				rMode = true;
 				if (agrv[i][2] != '\0')
 					cout << "TOO MUCH LETTER FOR R" << endl;
 				break;
+			case 'H':
 			case 'h':
 				hMode = true;			
 				if (agrv[i][2] != '\0')
 					cout << "TOO MUCH LETTER FOR HEAD" << endl;
 				h = agrv[++i][0];
 				break;
+			case 'T':
 			case 't':
 				tMode = true;
 				if (agrv[i][2] != '\0')
@@ -67,24 +72,18 @@ int main(int agrc, char* agrv[])
 	mode.Set(rMode, hMode, tMode, wMaxMode, cMaxMode, h, t);
 	FILE *fin, *fout;
 	int err = fopen_s(&fin, filePath, "r");
-	fopen_s(&fout, "../solution.txt", "w");
+	fopen_s(&fout, "./solution.txt", "w");
 	if (err != 0)
 		cout << "FILE PATH ERROR!" << endl;
 	Data data = Data(fin);
 
 	Searcher searcher = Searcher(data, mode);
-	searcher.exe();
-	searcher.output(true, fout);
-
-
-	//vector<int> w;
-	//vector<int> v;
-
-	//w.push_back(1);
-	//w.push_back(2);
-	//w.clear(); 
-	//w.push_back(3);
-	//w.push_back(4);
+	if (searcher.exe()) {
+		searcher.output(true, fout);
+	}
+	else {
+		cout << "CANNOT FIND A WORD LIST" << endl;
+	}
 
 	return 0;
 }

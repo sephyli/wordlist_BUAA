@@ -83,7 +83,15 @@ bool Searcher::judgeList() {
 			suc = false;
 	}
 	if (this->mode.tailMode && this->tmpWordList.size()!= 0) {
-		if (this->mode.tail != this->tmpWordList[this->tmpWordList.size()-1].tail)
+		int popCount = 0;
+		for (auto iter = this->tmpWordList.end()-1; iter != this->tmpWordList.begin(); iter--) {
+			if (this->mode.tail != iter->tail)
+				popCount++;
+		}
+		for (int i = 0; i < popCount; i++) {
+			this->tmpWordList.pop_back();
+		}
+		if (this->tmpWordList.size() == 0)
 			suc = false;
 	}
 
@@ -108,8 +116,9 @@ void Searcher::output(bool console, FILE* fout){
 	}
 	else {
 		for (auto iter = this->maxWordList.begin(); iter != this->maxWordList.end(); iter++) {
-			fprintf_s(fout, "%s", iter->s);
+			fprintf_s(fout, "%s\n", iter->s.c_str());
 		}
+		fclose(fout);
 	}
 }
 

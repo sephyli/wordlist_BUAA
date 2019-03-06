@@ -1,6 +1,2 @@
-﻿  Searcher.cpp
-g:\北航\计算机\软件工程\wordlist_buaa\wordlist\searcher.cpp(69): warning C4267: “初始化”: 从“size_t”转换到“int”，可能丢失数据
-g:\北航\计算机\软件工程\wordlist_buaa\wordlist\searcher.cpp(70): warning C4267: “初始化”: 从“size_t”转换到“int”，可能丢失数据
-g:\北航\计算机\软件工程\wordlist_buaa\wordlist\searcher.cpp(111): warning C4477: “fprintf_s”: 格式字符串“%s”需要类型“char *”的参数，但可变参数 1 拥有了类型“std::string”
-g:\北航\计算机\软件工程\wordlist_buaa\wordlist\searcher.cpp(63): warning C4715: “Searcher::getWordFromVec”: 不是所有的控件路径都返回值
+﻿  Wordlist.cpp
   Wordlist.vcxproj -> G:\北航\计算机\软件工程\wordlist_BUAA\x64\Debug\Wordlist.exe
