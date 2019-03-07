@@ -16,13 +16,15 @@ public:
 	std::vector<Word> tmpWordList;
 	bool exe();
 	void output(bool console, FILE* fout=NULL);
-
+	
 private:
+	bool headChar[26] = {false};
 	Word getWordFromVec(int headIndex, int tailIndex);
-	void reset();
+	void reset(char tail);
 	bool judgeList();
 	void search(char head);
-	bool headChar[26];
+	
 	bool allUsed(int headIndex, int tailIndex);
+
 };
 

@@ -2,6 +2,7 @@
 #include <string>
 class Word {
 public:
+	Word();
 	Word(const char* s, int length);
 	~Word();
 	char head;

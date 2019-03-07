@@ -1,6 +1,8 @@
 #include "pch.h"
 #include "Data.h"
 
+using namespace std;
+
 Data::Data()
 {
 }
@@ -32,13 +34,14 @@ Data::Data(char *words[], int len) {
 	}
 }
 
-void Data::reset() {
-	for (int i = 0; i < 26; i++) {
-		for (int j = 0; j < 26; j++) {
-			for (auto iter = this->ws.set[i][j].begin(); iter != this->ws.set[i][j].end(); iter++)
-				iter->use = false;
-		}
+void Data::reset(string s, char head, char tail) {
+	if (s.length() == 0) {
+		return;
 	}
+	vector<Word> tmp = this->ws.set[head - 'a'][tail - 'a'];
+	for (auto iter = tmp.begin(); iter != tmp.end(); iter++)
+		if (iter->s == s)
+			iter->use = false;
 }
 
 int Data::inrange(char c) {

@@ -1,9 +1,8 @@
 ﻿  stdafx.cpp
   unittest1.cpp
-    正在创建库 D:\Documents\Learning\SE\wordlist_BUAA\Debug\WordlistUnitTest.lib 和对象 D:\Documents\Learning\SE\wordlist_BUAA\Debug\WordlistUnitTest.exp
-unittest1.obj : error LNK2019: 无法解析的外部符号 "public: __thiscall Word::Word(char const *,int)" (??0Word@@QAE@PBDH@Z)，该符号在函数 "public: void __thiscall WordlistUnitTest::UnitTest1::TestMethod1(void)" (?TestMethod1@UnitTest1@WordlistUnitTest@@QAEXXZ) 中被引用
-unittest1.obj : error LNK2019: 无法解析的外部符号 "public: __thiscall Word::~Word(void)" (??1Word@@QAE@XZ)，该符号在函数 "public: void __thiscall WordlistUnitTest::UnitTest1::TestMethod1(void)" (?TestMethod1@UnitTest1@WordlistUnitTest@@QAEXXZ) 中被引用
-unittest1.obj : error LNK2019: 无法解析的外部符号 "public: __thiscall WordSet::WordSet(void)" (??0WordSet@@QAE@XZ)，该符号在函数 "public: void __thiscall WordlistUnitTest::UnitTest1::TestMethod1(void)" (?TestMethod1@UnitTest1@WordlistUnitTest@@QAEXXZ) 中被引用
-unittest1.obj : error LNK2019: 无法解析的外部符号 "public: __thiscall WordSet::~WordSet(void)" (??1WordSet@@QAE@XZ)，该符号在函数 "public: void __thiscall WordlistUnitTest::UnitTest1::TestMethod1(void)" (?TestMethod1@UnitTest1@WordlistUnitTest@@QAEXXZ) 中被引用
-unittest1.obj : error LNK2019: 无法解析的外部符号 "public: void __thiscall WordSet::append(class Word)" (?append@WordSet@@QAEXVWord@@@Z)，该符号在函数 "public: void __thiscall WordlistUnitTest::UnitTest1::TestMethod1(void)" (?TestMethod1@UnitTest1@WordlistUnitTest@@QAEXXZ) 中被引用
-D:\Documents\Learning\SE\wordlist_BUAA\Debug\WordlistUnitTest.dll : fatal error LNK1120: 5 个无法解析的外部命令
+d:\documents\learning\se\wordlist_buaa\wordlistunittest\unittest1.cpp(31): error C2228: “.size”的左边必须有类/结构/联合
+  d:\documents\learning\se\wordlist_buaa\wordlistunittest\unittest1.cpp(31): note: 类型是“std::vector<Word,std::allocator<_Ty>> [26]”
+          with
+          [
+              _Ty=Word
+          ]

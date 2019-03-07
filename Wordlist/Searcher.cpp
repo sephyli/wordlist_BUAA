@@ -26,19 +26,25 @@ bool Searcher::exe()
 void Searcher::search(char head)
 {
 	this->headChar[head - 'a'] = true;
-	
+	string s = "";
+	char head_tmp = '\0';
+	char tail_tmp = '\0';
 	for (int i = 0; i < 26; i++) {
 		if (this->headChar[i] == true && !this->mode.recurMode)
 			continue;
 		if (this->allUsed(head-'a', i))
 			continue;
-		char newWordTail = this->getWordFromVec(head - 'a', i).tail;
+		Word w = this->getWordFromVec(head - 'a', i);
+		s = w.s;
+		head_tmp = w.head;
+		tail_tmp = w.tail;
+		char newWordTail = w.tail;
 		this->search(newWordTail);
 	}
 
 	this->judgeList();
-	this->reset();
-	this->data.reset();
+	this->reset(tail_tmp);
+	this->data.reset(s, head_tmp, tail_tmp);
 
 	return;
 }
@@ -60,10 +66,29 @@ Word Searcher::getWordFromVec(int headIndex, int tailIndex) {
 			return *iter;
 		}
 	}
+	return Word();
 }
 
 bool Searcher::judgeList() {
 	bool suc = true;
+
+	if (this->mode.tailMode && this->tmpWordList.size() != 0) {
+		int popCount = 0;
+		for (auto iter = this->tmpWordList.end() - 1; ; iter--) {
+			if (this->mode.tail != iter->tail) {
+				popCount++;
+			}
+			else
+				break;
+			if (iter == this->tmpWordList.begin())
+				break;
+		}
+		for (int i = 0; i < popCount; i++) {
+			this->tmpWordList.pop_back();
+		}
+		if (this->tmpWordList.size() == 0)
+			suc = false;
+	}
 
 	if (this->mode.wordNumMaxMode) {
 		int maxNum = this->maxWordList.size();
@@ -82,18 +107,6 @@ bool Searcher::judgeList() {
 		if (maxNum >= tmpNum)
 			suc = false;
 	}
-	if (this->mode.tailMode && this->tmpWordList.size()!= 0) {
-		int popCount = 0;
-		for (auto iter = this->tmpWordList.end()-1; iter != this->tmpWordList.begin(); iter--) {
-			if (this->mode.tail != iter->tail)
-				popCount++;
-		}
-		for (int i = 0; i < popCount; i++) {
-			this->tmpWordList.pop_back();
-		}
-		if (this->tmpWordList.size() == 0)
-			suc = false;
-	}
 
 	if(suc == true)
 		this->maxWordList = this->tmpWordList;
@@ -101,11 +114,11 @@ bool Searcher::judgeList() {
 	return suc;
 }
 
-void Searcher::reset() {
-	this->tmpWordList.clear();
-	for (int i = 0; i < 26; i++) {
-		this->headChar[i] = false;
+void Searcher::reset(char tail) {
+	if (!tmpWordList.empty()) {
+		this->tmpWordList.pop_back();
 	}
+	this->headChar[tail - 'a'] = false;
 }
 
 void Searcher::output(bool console, FILE* fout){

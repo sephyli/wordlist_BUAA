@@ -68,18 +68,19 @@ int main(int agrc, char* agrv[])
 		}
 	}
 
-	Mode mode = Mode();
-	mode.Set(rMode, hMode, tMode, wMaxMode, cMaxMode, h, t);
+	Mode *mode = new Mode();
+	mode->Set(rMode, hMode, tMode, wMaxMode, cMaxMode, h, t);
 	FILE *fin, *fout;
 	int err = fopen_s(&fin, filePath, "r");
 	fopen_s(&fout, "./solution.txt", "w");
 	if (err != 0)
 		cout << "FILE PATH ERROR!" << endl;
-	Data data = Data(fin);
-
-	Searcher searcher = Searcher(data, mode);
-	if (searcher.exe()) {
-		searcher.output(true, fout);
+	Data *data = new Data(fin);
+	cout << data->ws.getWordsNum() << endl;
+	//return 0;
+	Searcher *searcher = new Searcher(*data, *mode);
+	if (searcher->exe()) {
+		searcher->output(true, fout);
 	}
 	else {
 		cout << "CANNOT FIND A WORD LIST" << endl;
