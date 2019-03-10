@@ -1,4 +1,4 @@
-#include "pch.h"
+#include "stdafx.h"
 #include "Searcher.h"
 #include <iostream>
 
@@ -11,11 +11,11 @@ Searcher::Searcher(Data d, Mode m)
 		this->headChar[i] = false;
 }
 
-bool Searcher::exe()
+bool Searcher::exe() 
 {
-	if (this->mode.headMode)
+	if (this->mode.headMode) 
 		this->search(this->mode.head);
-	else {
+	else{
 		for (int i = 0; i < 26; i++) {
 			this->search('a' + i);
 		}
@@ -29,13 +29,16 @@ void Searcher::search(char head)
 	for (int i = 0; i < 26; i++) {
 		if (this->headChar[i] == true && !this->mode.recurMode)
 			continue;
-		if (this->allUsed(head - 'a', i))
+		if (this->allUsed(head-'a', i))
 			continue;
 		Word w = this->getWordFromVec(head - 'a', i);
 		this->search(w.tail);
 		this->data.reset(w.s, head, w.tail);
 		if (!tmpWordList.empty()) {
 			this->tmpWordList.pop_back();
+		}
+		else {
+			cout << "fuck!!!!!!" << endl;
 		}
 	}
 	this->judgeList();
@@ -102,9 +105,9 @@ bool Searcher::judgeList() {
 			suc = false;
 	}
 
-	if (suc == true)
+	if(suc == true)
 		this->maxWordList = this->tmpWordList;
-
+	
 	return suc;
 }
 
@@ -112,7 +115,7 @@ void Searcher::reset(char tail) {
 	this->headChar[tail - 'a'] = false;
 }
 
-void Searcher::output(bool console, FILE* fout) {
+void Searcher::output(bool console, FILE* fout){
 	if (console) {
 		for (auto iter = this->maxWordList.begin(); iter != this->maxWordList.end(); iter++) {
 			std::cout << iter->s << std::endl;
@@ -135,3 +138,5 @@ int Searcher::output(char* result[]) {
 Searcher::~Searcher()
 {
 }
+
+

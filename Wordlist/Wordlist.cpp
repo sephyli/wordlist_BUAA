@@ -76,8 +76,8 @@ int main(int agrc, char* agrv[])
 	if (err != 0)
 		cout << "FILE PATH ERROR!" << endl;
 	Data *data = new Data(fin);
-	cout << data->ws.getWordsNum() << endl;
-	//return 0;
+	// cout << data->ws.getWordsNum() << endl;
+	// return 0;
 	Searcher *searcher = new Searcher(*data, *mode);
 	if (searcher->exe()) {
 		searcher->output(true, fout);

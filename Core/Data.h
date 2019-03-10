@@ -12,7 +12,7 @@ public:
 	Data(char *words[], int len);
 	~Data();
 	void reset(string s, char head, char tail);
-	WordSet ws; 
+	WordSet ws;
 private:
 	int inrange(char c);
 };

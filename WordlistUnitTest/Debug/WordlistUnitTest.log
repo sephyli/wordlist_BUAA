@@ -1,8 +1,0 @@
-﻿  stdafx.cpp
-  unittest1.cpp
-d:\documents\learning\se\wordlist_buaa\wordlistunittest\unittest1.cpp(31): error C2228: “.size”的左边必须有类/结构/联合
-  d:\documents\learning\se\wordlist_buaa\wordlistunittest\unittest1.cpp(31): note: 类型是“std::vector<Word,std::allocator<_Ty>> [26]”
-          with
-          [
-              _Ty=Word
-          ]
