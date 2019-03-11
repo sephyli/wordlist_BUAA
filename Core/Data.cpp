@@ -29,7 +29,7 @@ Data::Data(FILE* fpt)
 }
 Data::Data(char *words[], int len) {
 	for (int i = 0; i < len; i++) {
-		Word w = Word(words[i], strlen(words[i]));
+		Word w = Word(words[i], int(strlen(words[i])));
 		this->ws.append(w);
 	}
 }

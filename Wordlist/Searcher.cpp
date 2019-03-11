@@ -85,8 +85,8 @@ bool Searcher::judgeList() {
 	}
 
 	if (this->mode.wordNumMaxMode) {
-		int maxNum = this->maxWordList.size();
-		int tmpNum = this->tmpWordList.size();
+		int maxNum = int(this->maxWordList.size());
+		int tmpNum = int(this->tmpWordList.size());
 		if (maxNum >= tmpNum)
 			suc = false;
 	}
