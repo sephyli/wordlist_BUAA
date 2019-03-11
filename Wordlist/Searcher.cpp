@@ -27,6 +27,7 @@ void Searcher::search(char head)
 {
 	this->headChar[head - 'a'] = true;
 	for (int i = 0; i < 26; i++) {
+		//TODO 应直接throw一个excepiton，不应继续求解
 		if (this->headChar[i] == true && !this->mode.recurMode)
 			continue;
 		if (this->allUsed(head - 'a', i))

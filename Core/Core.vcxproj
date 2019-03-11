@@ -149,6 +149,7 @@
   <ItemGroup>
     <ClInclude Include="Core.h" />
     <ClInclude Include="Data.h" />
+    <ClInclude Include="Inputer.h" />
     <ClInclude Include="Mode.h" />
     <ClInclude Include="Searcher.h" />
     <ClInclude Include="stdafx.h" />
@@ -160,6 +161,7 @@
     <ClCompile Include="Core.cpp" />
     <ClCompile Include="Data.cpp" />
     <ClCompile Include="dllmain.cpp" />
+    <ClCompile Include="Inputer.cpp" />
     <ClCompile Include="Mode.cpp" />
     <ClCompile Include="Searcher.cpp" />
     <ClCompile Include="stdafx.cpp">

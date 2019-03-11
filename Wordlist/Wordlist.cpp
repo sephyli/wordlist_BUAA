@@ -5,6 +5,7 @@
 #include "Data.h"
 #include "Mode.h"
 #include "Searcher.h"
+#include "Inputer.h"
 
 using namespace std;
 
@@ -75,9 +76,12 @@ int main(int agrc, char* agrv[])
 	fopen_s(&fout, "./solution.txt", "w");
 	if (err != 0)
 		cout << "FILE PATH ERROR!" << endl;
-	Data *data = new Data(fin);
-	// cout << data->ws.getWordsNum() << endl;
-	// return 0;
+
+	char *words[10000];
+	Inputer *inputer = new Inputer();
+	int wordNum = inputer->getWord(fin, words);
+
+	Data *data = new Data(words, wordNum);
 	Searcher *searcher = new Searcher(*data, *mode);
 	if (searcher->exe()) {
 		searcher->output(true, fout);

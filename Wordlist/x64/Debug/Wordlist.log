@@ -1,9 +1,2 @@
-﻿  pch.cpp
-  Data.cpp
-  Mode.cpp
-  Searcher.cpp
-  Word.cpp
-  WordSet.cpp
-  Wordlist.cpp
-  正在生成代码...
+﻿  Wordlist.cpp
   Wordlist.vcxproj -> G:\北航\计算机\软件工程\wordlist_BUAA\x64\Debug\Wordlist.exe
