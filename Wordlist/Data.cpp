@@ -1,5 +1,6 @@
 #include "pch.h"
 #include "Data.h"
+#include <iostream>
 
 using namespace std;
 
@@ -27,11 +28,20 @@ Data::Data()
 //		c = fgetc(fpt);
 //	}
 //}
+
 Data::Data(char *words[], int len) {
-	for (int i = 0; i < len; i++) {
-		Word w = Word(words[i], int(strlen(words[i])));
-		this->ws.append(w);
+	try {
+		for (int i = 0; i < len; i++) {
+			Word w = Word(words[i], int(strlen(words[i])));
+			this->ws.append(w);
+		}
 	}
+	catch (const char* a) {
+		std::cout << a << endl;
+		std::cout << "Program exits." << endl;
+		exit(-1);
+	}
+	
 }
 
 void Data::reset(string s, char head, char tail) {
@@ -45,7 +55,7 @@ void Data::reset(string s, char head, char tail) {
 
 //int Data::inrange(char c) {
 //	if (c >= 'a' && c <= 'z')
-//		return 1;
+//		return  1;
 //	else if (c >= 'A' && c <= 'Z')
 //		return 2;
 //	else

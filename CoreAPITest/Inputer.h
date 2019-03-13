@@ -2,8 +2,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
-class Inputer
-{
+class Inputer {
 public:
 	Inputer();
 	~Inputer();

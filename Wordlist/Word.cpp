@@ -11,6 +11,9 @@ Word::Word() {
 }
 
 Word::Word(const char* s, int length) {
+	if (length > 100) {
+		throw "Word too long";
+	}
 	char s_tmp[100] = "\0";
 	for (int i = 0; i <= length; i++) {
 		if ('A' <= s[i] && s[i]<= 'Z') {
