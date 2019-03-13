@@ -2,13 +2,6 @@
 #include "pch.h"
 #include "Word.h"
 #include <string>
-Word::Word() {
-	this->s = "";
-	this->head = 0;
-	this->length = 0;
-	this->tail = 0;
-	this->use = false;
-}
 
 Word::Word(const char* s, int length) {
 	if (length > 100) {

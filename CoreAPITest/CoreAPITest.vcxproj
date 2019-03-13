@@ -77,8 +77,8 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>G:\北航\计算机\软件工程\wordlist_BUAA\Core;$(IncludePath)</IncludePath>
-    <LibraryPath>G:\北航\计算机\软件工程\wordlist_BUAA\x64\Debug;$(LibraryPath)</LibraryPath>
+    <IncludePath>D:\Documents\Learning\SE\wordlist_BUAA\Core;$(IncludePath)</IncludePath>
+    <LibraryPath>D:\Documents\Learning\SE\wordlist_BUAA\x64\Debug;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>

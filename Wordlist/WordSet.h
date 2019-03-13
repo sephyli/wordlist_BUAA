@@ -6,7 +6,7 @@ public:
 	WordSet();
 	~WordSet();
 	void append(Word w);
-	int getWordsNum();
+	//int getWordsNum();
 	//Word getWord(char head);
 // private:
 	std::vector<Word> set[26][26];

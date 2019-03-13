@@ -1,0 +1,53 @@
+<!doctype html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+        <meta charset="utf-8"/>
+	    <title>data.cpp</title>
+	    <link href="../../third-party/google-code-prettify/prettify-CppCoverage.css" type="text/css" rel="stylesheet" />
+	    <script type="text/javascript" src="../../third-party/google-code-prettify/prettify.js"></script>
+	</head>
+	<body onload="prettyPrint()">
+        <h4></h4>
+		<pre class="prettyprint lang-cpp linenums">
+#include "pch.h"
+#include "Data.h"
+#include &lt;iostream&gt;
+
+using namespace std;
+
+Data::Data()
+<span style = "background-color:#dfd">{
+}</span>
+
+<span style = "background-color:#dfd">Data::Data(char *words[], int len) {
+	try {
+		for (int i = 0; i &lt; len; i++) {
+			Word w = Word(words[i], int(strlen(words[i])));
+			this-&gt;ws.append(w);
+		}
+	}</span>
+	catch (const char* a) {
+<span style = "background-color:#dfd">		std::cout &lt;&lt; a &lt;&lt; endl;
+		std::cout &lt;&lt; "Program exits." &lt;&lt; endl;
+		exit(-1);</span>
+<span style = "background-color:#fdd">	}</span>
+	
+<span style = "background-color:#dfd">}</span>
+
+<span style = "background-color:#dfd">void Data::reset(string s, char head, char tail) {
+	if (s.length() == 0) {</span>
+<span style = "background-color:#fdd">		return;</span>
+	}
+<span style = "background-color:#dfd">	for (auto iter = this-&gt;ws.set[head - 'a'][tail - 'a'].begin(); iter != this-&gt;ws.set[head - 'a'][tail - 'a'].end(); iter++)
+		if (iter-&gt;s == s)
+			iter-&gt;use = false;
+}</span>
+
+
+Data::~Data()
+<span style = "background-color:#dfd">{
+}</span>
+
+</pre>
+	</body>
+</html>

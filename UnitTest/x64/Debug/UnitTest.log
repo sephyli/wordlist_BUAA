@@ -1,3 +1,6 @@
-﻿  unittest1.cpp
-    正在创建库 G:\北航\计算机\软件工程\wordlist_BUAA\x64\Debug\UnitTest.lib 和对象 G:\北航\计算机\软件工程\wordlist_BUAA\x64\Debug\UnitTest.exp
-  UnitTest.vcxproj -> G:\北航\计算机\软件工程\wordlist_BUAA\x64\Debug\UnitTest.dll
+﻿  stdafx.cpp
+  Inputer.cpp
+  unittest1.cpp
+  正在生成代码...
+    正在创建库 D:\Documents\Learning\SE\wordlist_BUAA\x64\Debug\UnitTest.lib 和对象 D:\Documents\Learning\SE\wordlist_BUAA\x64\Debug\UnitTest.exp
+  UnitTest.vcxproj -> D:\Documents\Learning\SE\wordlist_BUAA\x64\Debug\UnitTest.dll
