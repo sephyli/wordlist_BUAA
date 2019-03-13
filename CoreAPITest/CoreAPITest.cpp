@@ -9,7 +9,7 @@ using namespace std;
 int main()
 {
 	FILE *fin;
-	fopen_s(&fin, "./test.txt", "r");
+	fopen_s(&fin, "../test/testfile.txt", "r");
 
 	char *words[10000], *result[27];
 	Inputer *inputer = new Inputer();
@@ -18,6 +18,6 @@ int main()
 		result[i] = new char(100);
 	}
 
-	int len = Core::gen_chain_word(words, wordNum, result, 0, 0, false);
+	int len = Core::gen_chain_word(words, wordNum, result, 0, 0, true);
 	cout << len << endl;
 }

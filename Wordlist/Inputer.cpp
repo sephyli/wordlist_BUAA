@@ -18,7 +18,7 @@ int Inputer::getWord(FILE* fpt, char *words[])
 		else if (index != 0) {
 			s[index] = '\0';
 			words[wordNum] = (char*)malloc(1000 * sizeof(char));
-			strcpy_s(words[wordNum++], index+1,s);
+			strcpy_s(words[wordNum++], index + 1, s);
 			//words[wordNum++] = s;
 			index = 0;
 			if (c == EOF)

@@ -13,32 +13,78 @@ Searcher::Searcher(Data d, Mode m)
 
 bool Searcher::exe() 
 {
-	if (this->mode.headMode) 
-		this->search(this->mode.head);
-	else{
-		for (int i = 0; i < 26; i++) {
-			this->search('a' + i);
+	//if (this->mode.headMode) 
+	//	this->search(this->mode.head);
+	//else{
+	//	for (int i = 0; i < 26; i++) {
+	//		this->search('a' + i);
+	//	}
+	//}
+	//return (this->maxWordList.size() != 0);
+	try {
+		if (this->mode.headMode)
+			this->search(this->mode.head);
+		else {
+			for (int i = 0; i < 26; i++) {
+				this->search('a' + i);
+			}
 		}
+		if (this->maxWordList.size() < 2) {
+			throw "找不到这样的单词链！";
+			return false;
+		}
+		else {
+			return true;
+		}
+
 	}
-	return (this->maxWordList.size() != 0);
+	catch (const char* e) {
+		cout << e << endl;
+		exit(-1);
+	}
 }
 
 void Searcher::search(char head)
 {
+	//this->headChar[head - 'a'] = true;
+	//for (int i = 0; i < 26; i++) {
+	//	if (this->headChar[i] == true && !this->mode.recurMode)
+	//		continue;
+	//	if (this->allUsed(head-'a', i))
+	//		continue;
+	//	Word w = this->getWordFromVec(head - 'a', i);
+	//	this->search(w.tail);
+	//	this->data.reset(w.s, head, w.tail);
+	//	if (!tmpWordList.empty()) {
+	//		this->tmpWordList.pop_back();
+	//	}
+	//	else {
+	//		cout << "fuck!!!!!!" << endl;
+	//	}
+	//}
+	//this->judgeList();
+	//this->reset(head);
+	//return;
 	this->headChar[head - 'a'] = true;
 	for (int i = 0; i < 26; i++) {
-		if (this->headChar[i] == true && !this->mode.recurMode)
-			continue;
-		if (this->allUsed(head-'a', i))
+		if (this->headChar[i] == true) {
+			if (!this->mode.recurMode) {
+				if (!this->allUsed(head - 'a', i)) {
+					throw "单词成环！";
+					return;
+				}
+				else {
+					continue;
+				}
+			}
+		}
+		if (this->allUsed(head - 'a', i))
 			continue;
 		Word w = this->getWordFromVec(head - 'a', i);
 		this->search(w.tail);
 		this->data.reset(w.s, head, w.tail);
 		if (!tmpWordList.empty()) {
 			this->tmpWordList.pop_back();
-		}
-		else {
-			cout << "fuck!!!!!!" << endl;
 		}
 	}
 	this->judgeList();
@@ -121,12 +167,10 @@ void Searcher::output(bool console, FILE* fout){
 			std::cout << iter->s << std::endl;
 		}
 	}
-	else {
-		for (auto iter = this->maxWordList.begin(); iter != this->maxWordList.end(); iter++) {
-			fprintf_s(fout, "%s\n", iter->s.c_str());
-		}
-		fclose(fout);
+	for (auto iter = this->maxWordList.begin(); iter != this->maxWordList.end(); iter++) {
+		fprintf_s(fout, "%s\n", iter->s.c_str());
 	}
+	fclose(fout);
 }
 int Searcher::output(char* result[]) {
 	int i = 0;
