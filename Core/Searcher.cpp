@@ -67,7 +67,7 @@ void Searcher::search(char head)
 	//return;
 	this->headChar[head - 'a'] = true;
 	for (int i = 0; i < 26; i++) {
-		if (this->headChar[i] == true) {
+		if (this->headChar[i] == true && head - 'a' != i) {
 			if (!this->mode.recurMode) {
 				if (!this->allUsed(head - 'a', i)) {
 					throw "µ¥´Ê³É»·£¡";

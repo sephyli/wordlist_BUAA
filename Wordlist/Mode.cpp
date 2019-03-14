@@ -18,7 +18,9 @@ Mode::~Mode()
 {
 }
 
-void Mode::Set(bool rMode, bool hMode,bool tMode, bool wMaxMode, bool cMaxMode,char h, char t) {
+void Mode::Set(bool rMode, bool hMode, bool tMode, bool wMaxMode, bool cMaxMode, char h, char t) {
+	if ((hMode && (h < 'a' || h > 'z')) || (tMode && (t < 'a' || t > 'z')) || (wMaxMode && cMaxMode))
+		throw "ÃüÁîÐÐ²ÎÊý´íÎó£¡";
 	this->recurMode = rMode;
 	this->headMode = hMode;
 	this->tailMode = tMode;

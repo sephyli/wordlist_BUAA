@@ -1,0 +1,169 @@
+<!doctype html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+        <meta charset="utf-8"/>
+	    <title>searcher.cpp</title>
+	    <link href="../../third-party/google-code-prettify/prettify-CppCoverage.css" type="text/css" rel="stylesheet" />
+	    <script type="text/javascript" src="../../third-party/google-code-prettify/prettify.js"></script>
+	</head>
+	<body onload="prettyPrint()">
+        <h4></h4>
+		<pre class="prettyprint lang-cpp linenums">
+#include "pch.h"
+#include "Searcher.h"
+#include &lt;iostream&gt;
+
+
+Searcher::Searcher(Data d, Mode m)
+<span style = "background-color:#dfd">{
+	this-&gt;data = d;
+	this-&gt;mode = m;
+	for (int i = 0; i &lt; 26; i++)
+		this-&gt;headChar[i] = false;
+}</span>
+
+bool Searcher::exe()
+<span style = "background-color:#dfd">{
+	try {
+		if (this-&gt;mode.headMode)
+			this-&gt;search(this-&gt;mode.head);
+		else {
+			for (int i = 0; i &lt; 26; i++) {
+				this-&gt;search('a' + i);
+			}</span>
+		}
+<span style = "background-color:#dfd">		if (this-&gt;maxWordList.size() &lt; 2) {</span>
+<span style = "background-color:#fdd">			throw "ÕÒ²»µ½ÕâÑùµÄµ¥´ÊÁ´£¡";</span>
+		}
+<span style = "background-color:#fdd">		else {</span>
+<span style = "background-color:#dfd">			return true;</span>
+		}
+		
+<span style = "background-color:#fdd">	}</span>
+	catch (const char* e) {
+<span style = "background-color:#fdd">		cout &lt;&lt; e &lt;&lt; endl;
+		exit(-1);
+	}</span>
+	
+<span style = "background-color:#dfd">}</span>
+
+void Searcher::search(char head)
+<span style = "background-color:#dfd">{
+	this-&gt;headChar[head - 'a'] = true;
+	for (int i = 0; i &lt; 26; i++) {
+		if (this-&gt;headChar[i] == true &amp;&amp; head - 'a' != i) {
+			if (!this-&gt;mode.recurMode) {
+				if (!this-&gt;allUsed(head - 'a', i)) {</span>
+<span style = "background-color:#fdd">					throw "µ¥´Ê³É»·£¡";</span>
+				}
+<span style = "background-color:#fdd">				else {</span>
+<span style = "background-color:#dfd">					continue;</span>
+				}
+			}
+		}
+<span style = "background-color:#dfd">		if (this-&gt;allUsed(head - 'a', i))
+			continue;
+		Word w = this-&gt;getWordFromVec(head - 'a', i);
+		this-&gt;search(w.tail);
+		this-&gt;data.reset(w.s, head, w.tail);
+		if (!tmpWordList.empty()) {
+			this-&gt;tmpWordList.pop_back();</span>
+		}
+<span style = "background-color:#dfd">	}
+	this-&gt;judgeList();
+	this-&gt;reset(head);</span>
+	return;
+<span style = "background-color:#dfd">}</span>
+
+<span style = "background-color:#dfd">bool Searcher::allUsed(int headIndex, int tailIndex) {
+	for (auto iter = this-&gt;data.ws.set[headIndex][tailIndex].begin(); iter != this-&gt;data.ws.set[headIndex][tailIndex].end(); iter++) {
+		if (iter-&gt;use == false) {
+			return false;
+		}
+	}
+	return true;
+}</span>
+
+<span style = "background-color:#dfd">Word Searcher::getWordFromVec(int headIndex, int tailIndex) {
+	for (auto iter = this-&gt;data.ws.set[headIndex][tailIndex].begin(); iter != this-&gt;data.ws.set[headIndex][tailIndex].end(); iter++) {
+		if (iter-&gt;use != true) {
+			iter-&gt;use = true;
+			this-&gt;tmpWordList.push_back(*iter);
+			return *iter;
+		}</span>
+<span style = "background-color:#fdd">	}
+	return Word("", 0);</span>
+<span style = "background-color:#dfd">}</span>
+
+<span style = "background-color:#dfd">bool Searcher::judgeList() {
+	bool suc = true;</span>
+
+<span style = "background-color:#dfd">	if (this-&gt;mode.tailMode &amp;&amp; this-&gt;tmpWordList.size() != 0) {</span>
+<span style = "background-color:#fdd">		int popCount = 0;
+		for (auto iter = this-&gt;tmpWordList.end() - 1; ; iter--) {
+			if (this-&gt;mode.tail != iter-&gt;tail) {
+				popCount++;</span>
+			}
+<span style = "background-color:#fdd">			else
+				break;
+			if (iter == this-&gt;tmpWordList.begin())
+				break;
+		}
+		for (int i = 0; i &lt; popCount; i++) {
+			this-&gt;tmpWordList.pop_back();
+		}
+		if (this-&gt;tmpWordList.size() == 0)
+			suc = false;</span>
+	}
+
+<span style = "background-color:#dfd">	if (this-&gt;mode.wordNumMaxMode) {
+		int maxNum = int(this-&gt;maxWordList.size());
+		int tmpNum = int(this-&gt;tmpWordList.size());
+		if (maxNum &gt;= tmpNum)
+			suc = false;
+	}
+	else if (this-&gt;mode.charNumMaxMode) {
+		int maxNum = 0, tmpNum = 0;
+		for (auto iter = this-&gt;maxWordList.begin(); iter != this-&gt;maxWordList.end(); iter++) {
+			maxNum += iter-&gt;length;
+		}
+		for (auto iter = this-&gt;tmpWordList.begin(); iter != this-&gt;tmpWordList.end(); iter++) {
+			tmpNum += iter-&gt;length;
+		}
+		if (maxNum &gt;= tmpNum)
+			suc = false;</span>
+	}
+
+<span style = "background-color:#dfd">	if (suc == true)
+		this-&gt;maxWordList = this-&gt;tmpWordList;</span>
+
+<span style = "background-color:#dfd">	return suc;
+}</span>
+
+<span style = "background-color:#dfd">void Searcher::reset(char tail) {
+	this-&gt;headChar[tail - 'a'] = false;
+}</span>
+
+<span style = "background-color:#dfd">void Searcher::output(bool console, FILE* fout) {
+	if (console) {
+		for (auto iter = this-&gt;maxWordList.begin(); iter != this-&gt;maxWordList.end(); iter++) {
+			std::cout &lt;&lt; iter-&gt;s &lt;&lt; std::endl;
+		}</span>
+	}
+<span style = "background-color:#dfd">	for (auto iter = this-&gt;maxWordList.begin(); iter != this-&gt;maxWordList.end(); iter++) {
+		fprintf_s(fout, "%s\n", iter-&gt;s.c_str());
+	}
+	fclose(fout);
+}</span>
+//int Searcher::output(char* result[]) {
+//	int i = 0;
+//	for (auto iter = this-&gt;maxWordList.begin(); iter != this-&gt;maxWordList.end(); iter++) {
+//		strcpy_s(result[i++], iter-&gt;length + 1, iter-&gt;s.c_str());
+//	}
+//	return i;
+//}
+Searcher::~Searcher()
+<span style = "background-color:#fdd">{
+}</span></pre>
+	</body>
+</html>

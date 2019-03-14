@@ -1,0 +1,57 @@
+<!doctype html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+        <meta charset="utf-8"/>
+	    <title>wordset.cpp</title>
+	    <link href="../../third-party/google-code-prettify/prettify-CppCoverage.css" type="text/css" rel="stylesheet" />
+	    <script type="text/javascript" src="../../third-party/google-code-prettify/prettify.js"></script>
+	</head>
+	<body onload="prettyPrint()">
+        <h4></h4>
+		<pre class="prettyprint lang-cpp linenums">
+#include "pch.h"
+#include "WordSet.h"
+<span style = "background-color:#dfd">WordSet::WordSet() {
+}</span>
+
+<span style = "background-color:#dfd">WordSet::~WordSet(){}</span>
+
+<span style = "background-color:#dfd">void WordSet::append(Word w) {
+	if (this-&gt;set[w.head - 'a'][w.tail - 'a'].size() == 0) {
+		this-&gt;set[w.head - 'a'][w.tail - 'a'].push_back(w);
+		return;</span>
+	}
+<span style = "background-color:#dfd">	bool suc = true;
+	for (auto iter = this-&gt;set[w.head - 'a'][w.tail - 'a'].begin(); iter &lt; this-&gt;set[w.head - 'a'][w.tail - 'a'].end(); iter++) {
+		if (iter-&gt;s.compare(w.s) == 0) {</span>
+<span style = "background-color:#fdd">			suc = false;</span>
+<span style = "background-color:#dfd">		}
+	}
+	if (suc) {
+		bool insert = false;
+		for (auto iter = this-&gt;set[w.head - 'a'][w.tail - 'a'].begin(); iter &lt; this-&gt;set[w.head - 'a'][w.tail - 'a'].end(); iter++) {
+			if (iter-&gt;length &lt;= w.length) {
+				this-&gt;set[w.head - 'a'][w.tail - 'a'].insert(iter, 1, w);
+				insert = true;
+				break;</span>
+<span style = "background-color:#fdd">			}</span>
+<span style = "background-color:#dfd">		}
+		if(!insert)</span>
+<span style = "background-color:#fdd">			this-&gt;set[w.head - 'a'][w.tail - 'a'].push_back(w);</span>
+	}
+<span style = "background-color:#dfd">}</span>
+
+//int WordSet::getWordsNum() {
+//	int num = 0;
+//	for (int i = 0; i &lt; 26; i++) {
+//		for (int j = 0; j &lt; 26; j++) {
+//			num += int(this-&gt;set[i][j].size());
+//		}
+//	}
+//	return num;
+//}
+//Word WordSet::getWord(char head) {
+//
+//}</pre>
+	</body>
+</html>

@@ -21,10 +21,10 @@
     <ClInclude Include="targetver.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="..\Core\Core.h">
+    <ClInclude Include="Inputer.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="Inputer.h">
+    <ClInclude Include="..\Core\Core.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>

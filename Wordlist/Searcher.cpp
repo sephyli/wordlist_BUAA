@@ -23,7 +23,6 @@ bool Searcher::exe()
 		}
 		if (this->maxWordList.size() < 2) {
 			throw "找不到这样的单词链！";
-			return false;
 		}
 		else {
 			return true;
@@ -41,11 +40,10 @@ void Searcher::search(char head)
 {
 	this->headChar[head - 'a'] = true;
 	for (int i = 0; i < 26; i++) {
-		if (this->headChar[i] == true) {
+		if (this->headChar[i] == true && head - 'a' != i) {
 			if (!this->mode.recurMode) {
 				if (!this->allUsed(head - 'a', i)) {
 					throw "单词成环！";
-					return;
 				}
 				else {
 					continue;
@@ -83,7 +81,7 @@ Word Searcher::getWordFromVec(int headIndex, int tailIndex) {
 			return *iter;
 		}
 	}
-	return Word();
+	return Word("", 0);
 }
 
 bool Searcher::judgeList() {
@@ -146,13 +144,13 @@ void Searcher::output(bool console, FILE* fout) {
 	}
 	fclose(fout);
 }
-int Searcher::output(char* result[]) {
-	int i = 0;
-	for (auto iter = this->maxWordList.begin(); iter != this->maxWordList.end(); iter++) {
-		strcpy_s(result[i++], iter->length + 1, iter->s.c_str());
-	}
-	return i;
-}
+//int Searcher::output(char* result[]) {
+//	int i = 0;
+//	for (auto iter = this->maxWordList.begin(); iter != this->maxWordList.end(); iter++) {
+//		strcpy_s(result[i++], iter->length + 1, iter->s.c_str());
+//	}
+//	return i;
+//}
 Searcher::~Searcher()
 {
 }

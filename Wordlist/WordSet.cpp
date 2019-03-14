@@ -30,15 +30,15 @@ void WordSet::append(Word w) {
 	}
 }
 
-int WordSet::getWordsNum() {
-	int num = 0;
-	for (int i = 0; i < 26; i++) {
-		for (int j = 0; j < 26; j++) {
-			num += int(this->set[i][j].size());
-		}
-	}
-	return num;
-}
+//int WordSet::getWordsNum() {
+//	int num = 0;
+//	for (int i = 0; i < 26; i++) {
+//		for (int j = 0; j < 26; j++) {
+//			num += int(this->set[i][j].size());
+//		}
+//	}
+//	return num;
+//}
 //Word WordSet::getWord(char head) {
 //
 //}

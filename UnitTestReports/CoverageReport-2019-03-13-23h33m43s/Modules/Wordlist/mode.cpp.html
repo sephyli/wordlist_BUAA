@@ -1,0 +1,44 @@
+<!doctype html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+        <meta charset="utf-8"/>
+	    <title>mode.cpp</title>
+	    <link href="../../third-party/google-code-prettify/prettify-CppCoverage.css" type="text/css" rel="stylesheet" />
+	    <script type="text/javascript" src="../../third-party/google-code-prettify/prettify.js"></script>
+	</head>
+	<body onload="prettyPrint()">
+        <h4></h4>
+		<pre class="prettyprint lang-cpp linenums">
+#include "pch.h"
+#include "Mode.h"
+
+
+Mode::Mode()
+<span style = "background-color:#dfd">{
+	this-&gt;recurMode =false;
+	this-&gt;headMode =false;
+	this-&gt;tailMode =false;
+	this-&gt;wordNumMaxMode =false;
+	this-&gt;charNumMaxMode=false;
+	this-&gt;head = 0;
+	this-&gt;tail = 0;
+}</span>
+
+
+Mode::~Mode()
+<span style = "background-color:#dfd">{
+}</span>
+
+<span style = "background-color:#dfd">void Mode::Set(bool rMode, bool hMode, bool tMode, bool wMaxMode, bool cMaxMode, char h, char t) {
+	if ((hMode &amp;&amp; (h &lt; 'a' || h &gt; 'z')) || (tMode &amp;&amp; (t &lt; 'a' || t &gt; 'z')) || (wMaxMode &amp;&amp; cMaxMode))
+		throw "ÃüÁîÐÐ²ÎÊý´íÎó£¡";
+	this-&gt;recurMode = rMode;
+	this-&gt;headMode = hMode;
+	this-&gt;tailMode = tMode;
+	this-&gt;wordNumMaxMode = wMaxMode;
+	this-&gt;charNumMaxMode = cMaxMode;
+	this-&gt;head = h;
+	this-&gt;tail = t;
+}</span></pre>
+	</body>
+</html>

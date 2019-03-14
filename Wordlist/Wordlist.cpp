@@ -11,15 +11,16 @@ using namespace std;
 
 int main(int agrc, char* agrv[])
 {
-	bool rMode = false;
-	bool hMode = false;
-	bool tMode = false;
-	bool wMaxMode = false;
-	bool cMaxMode = false;
-	char h = 0;
-	char t = 0;
-	char filePath[1000] = "\0";
 	try {
+		// 读取命令行参数
+		bool rMode = false;
+		bool hMode = false;
+		bool tMode = false;
+		bool wMaxMode = false;
+		bool cMaxMode = false;
+		char h = 0;
+		char t = 0;
+		char filePath[1000] = "\0";
 		for (int i = 0; i < agrc; i++) {
 			if (agrv[i][0] == '-') {
 				switch (agrv[i][1])
@@ -73,32 +74,29 @@ int main(int agrc, char* agrv[])
 				filePath[j] = '\0';
 			}
 		}
+
+		Mode *mode = new Mode();
+		mode->Set(rMode, hMode, tMode, wMaxMode, cMaxMode, h, t);
+		FILE *fin, *fout;
+		int err = fopen_s(&fin, filePath, "r");
+		fopen_s(&fout, "./solution.txt", "w");
+		if (err != 0) {
+			throw "文件不存在！";
+		}
+
+		char *words[10000];
+		Inputer *inputer = new Inputer();
+		int wordNum = inputer->getWord(fin, words);
+
+		Data *data = new Data(words, wordNum);
+		Searcher *searcher = new Searcher(*data, *mode);
+		if (searcher->exe()) {
+			searcher->output(true, fout);
+		}
 	}
 	catch (const char* msg) {
 		cout << msg << endl;
 		exit(-1);
 	}
-	
-
-	Mode *mode = new Mode();
-	mode->Set(rMode, hMode, tMode, wMaxMode, cMaxMode, h, t);
-	FILE *fin, *fout;
-	int err = fopen_s(&fin, filePath, "r");
-	fopen_s(&fout, "./solution.txt", "w");
-	if (err != 0) {
-		cout << "文件不存在!" << endl;
-		exit(-1);
-	}
-
-	char *words[10000];
-	Inputer *inputer = new Inputer();
-	int wordNum = inputer->getWord(fin, words);
-
-	Data *data = new Data(words, wordNum);
-	Searcher *searcher = new Searcher(*data, *mode);
-	if (searcher->exe()) {
-		searcher->output(true, fout);
-	}
-
 	return 0;
 }
