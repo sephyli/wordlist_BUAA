@@ -13,14 +13,6 @@ Searcher::Searcher(Data d, Mode m)
 
 bool Searcher::exe() 
 {
-	//if (this->mode.headMode) 
-	//	this->search(this->mode.head);
-	//else{
-	//	for (int i = 0; i < 26; i++) {
-	//		this->search('a' + i);
-	//	}
-	//}
-	//return (this->maxWordList.size() != 0);
 	try {
 		if (this->mode.headMode)
 			this->search(this->mode.head);
@@ -36,7 +28,6 @@ bool Searcher::exe()
 		else {
 			return true;
 		}
-
 	}
 	catch (const char* e) {
 		cout << e << endl;
@@ -46,25 +37,6 @@ bool Searcher::exe()
 
 void Searcher::search(char head)
 {
-	//this->headChar[head - 'a'] = true;
-	//for (int i = 0; i < 26; i++) {
-	//	if (this->headChar[i] == true && !this->mode.recurMode)
-	//		continue;
-	//	if (this->allUsed(head-'a', i))
-	//		continue;
-	//	Word w = this->getWordFromVec(head - 'a', i);
-	//	this->search(w.tail);
-	//	this->data.reset(w.s, head, w.tail);
-	//	if (!tmpWordList.empty()) {
-	//		this->tmpWordList.pop_back();
-	//	}
-	//	else {
-	//		cout << "fuck!!!!!!" << endl;
-	//	}
-	//}
-	//this->judgeList();
-	//this->reset(head);
-	//return;
 	this->headChar[head - 'a'] = true;
 	for (int i = 0; i < 26; i++) {
 		if (this->headChar[i] == true && head - 'a' != i) {
@@ -172,6 +144,7 @@ void Searcher::output(bool console, FILE* fout){
 	}
 	fclose(fout);
 }
+
 int Searcher::output(char* result[]) {
 	int i = 0;
 	for (auto iter = this->maxWordList.begin(); iter != this->maxWordList.end(); iter++) {
@@ -179,6 +152,7 @@ int Searcher::output(char* result[]) {
 	}
 	return i;
 }
+
 Searcher::~Searcher()
 {
 }

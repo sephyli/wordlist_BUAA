@@ -1,9 +1,5 @@
 /.vs
-/Debug
-/Wordlist/Debug
-/Core/Debug
-/CoreAPITest/Debug
 /x64
-/Wordlist/x64
-/Core/x64
-/CoreAPITest/x64
+/Debug
+/*/x64
+/*/Debug

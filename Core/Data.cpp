@@ -8,19 +8,14 @@ Data::Data()
 }
 
 Data::Data(char *words[], int len) {
-	//for (int i = 0; i < len; i++) {
-	//	Word w = Word(words[i], int(strlen(words[i])));
-	//	this->ws.append(w);
-	//}
 	try {
 		for (int i = 0; i < len; i++) {
 			Word w = Word(words[i], int(strlen(words[i])));
 			this->ws.append(w);
 		}
 	}
-	catch (const char* a) {
-		std::cout << a << endl;
-		std::cout << "Program exits." << endl;
+	catch (const char* msg) {
+		std::cout << msg << endl;
 		exit(-1);
 	}
 }
